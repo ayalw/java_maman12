@@ -71,10 +71,15 @@ public abstract class BankAccount {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append(System.getProperty("line.separator"));
 		sb.append("[Account Number: " + m_accountNumber + "]");
+		sb.append(System.getProperty("line.separator"));
 		sb.append("[Owner Name: " + m_ownerName + "]");
+		sb.append(System.getProperty("line.separator"));
 		sb.append("[Owner ID: " + m_ownerId + "]");
+		sb.append(System.getProperty("line.separator"));
 		sb.append("[Balance: " + m_balance + "]");
+		sb.append(System.getProperty("line.separator"));
 		return sb.toString();
 	}
 

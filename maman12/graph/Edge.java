@@ -12,7 +12,8 @@ public class Edge {
 	public Edge(Point p1, Point p2) {
 		m_p1 = p1;
 		m_p2 = p2;
-		m_pMiddle = new Point((p2.x - p1.x) / 2, (p2.y - p1.y) / 2);
+		m_pMiddle = new Point(p1.x + ((p2.x - p1.x) / 2),
+				p1.y + ((p2.y - p1.y) / 2));
 		m_length = Math.sqrt(
 				Math.pow(p2.x - p1.x, 2)
 				+ Math.pow(p2.y - p1.y, 2));
