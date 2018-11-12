@@ -32,10 +32,11 @@ public class ServiceChargeChecking extends CheckingAccount {
 
 	@Override
 	public void manage() throws IllegalBalanceException {
-		if (m_serviceCharge > m_balance) {
-			throw new IllegalBalanceException();
+		double remainingBalance = m_balance - m_serviceCharge;
+		if (remainingBalance < 0) {
+			throw new IllegalBalanceException(remainingBalance);
 		}
-		m_balance -= m_serviceCharge;
+		m_balance = remainingBalance;
 	}
 	
 	@Override

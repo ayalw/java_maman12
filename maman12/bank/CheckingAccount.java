@@ -7,8 +7,9 @@ public abstract class CheckingAccount extends BankAccount {
 	}
 	
 	public void writeCheck(double amount) throws IllegalBalanceException {
-		if (amount > m_balance) {
-			throw new IllegalBalanceException();
+		double remainingBalance = m_balance - amount;
+		if (remainingBalance < 0) {
+			throw new IllegalBalanceException(remainingBalance);
 		}
 		m_balance -= amount;
 	}

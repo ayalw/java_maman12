@@ -37,16 +37,18 @@ public class NoServiceChargeChecking extends CheckingAccount {
 	
 	@Override
 	public void withdraw(double amount) throws IllegalBalanceException {
-		if (m_balance - amount < m_minimalBalance) {
-			throw new IllegalBalanceException();
+		double remainingBalance = m_balance - amount;
+		if (remainingBalance < m_minimalBalance) {
+			throw new IllegalBalanceException(remainingBalance);
 		}
 		super.withdraw(amount);
 	}
 	
 	@Override
 	public void writeCheck(double amount) throws IllegalBalanceException {
-		if (m_balance - amount < m_minimalBalance) {
-			throw new IllegalBalanceException();
+		double remainingBalance = m_balance - amount;
+		if (remainingBalance < m_minimalBalance) {
+			throw new IllegalBalanceException(remainingBalance);
 		}
 		super.writeCheck(amount);
 	}

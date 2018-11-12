@@ -60,10 +60,11 @@ public abstract class BankAccount {
 	}
 	
 	public void withdraw(double amount) throws IllegalBalanceException {
-		if (amount > m_balance) {
-			throw new IllegalBalanceException();
+		double remainingBalance = m_balance - amount;
+		if (remainingBalance < 0) {
+			throw new IllegalBalanceException(remainingBalance);
 		}
-		m_balance -= amount;
+		m_balance = remainingBalance;
 	}
 	
 	public abstract void manage() throws IllegalBalanceException;
