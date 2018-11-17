@@ -1,9 +1,17 @@
 package maman12.bank;
 
+/**
+ * Bank account without ability to write checks, and with ability to gain interest every month.
+ * @author ayalwarman
+ *
+ */
 public class SavingsAccount extends BankAccount {
 
 	private final static double DEFAULT_INTEREST = 0.02;
 	
+	/**
+	 * Interest value is in percentage.
+	 */
 	private double m_interest;
 	
 	public SavingsAccount(String accountNumber,
@@ -32,7 +40,7 @@ public class SavingsAccount extends BankAccount {
 	
 	@Override
 	public void manage() throws IllegalBalanceException {
-		m_balance *= (1 + m_interest);
+		m_balance = Utils.addPercentage(m_balance, m_interest);
 	}
 	
 	public String toString() {

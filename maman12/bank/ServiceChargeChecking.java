@@ -1,7 +1,16 @@
 package maman12.bank;
 
+/**
+ * Checking account with monthly management fee.
+ * Account holder is allowed to write checks as high as his balance is.
+ * @author ayalwarman
+ *
+ */
 public class ServiceChargeChecking extends CheckingAccount {
 
+	/**
+	 * How much money will be paid as monthly fee.
+	 */
 	private double m_serviceCharge;
 	
 	private final static double DEFAULT_SERVICE_CHARGE = 10;

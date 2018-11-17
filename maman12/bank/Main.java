@@ -18,7 +18,7 @@ public class Main {
 		accounts.add(new ServiceChargeChecking("44444", "Miko", "444444444", 3800));
 		accounts.add(new ServiceChargeChecking("55555", "Lizzy", "555555555", 40000, 20.4));
 		accounts.add(new NoServiceChargeChecking("66666", "Gabriela", "666666666", 50000));
-		accounts.add(new NoServiceChargeChecking("77777", "Adam", "777777777", 93800, 1500));
+		accounts.add(new NoServiceChargeChecking("77777", "Adam", "777777777", 3000, 1500));
 		accounts.add(new HighInterestSavings("88888", "Ozzy", "888888888", 400000));
 		accounts.add(new HighInterestSavings("99999", "Jacky", "999999999", 30000, 2000));
 		accounts.add(new InterestChecking("12121", "Ralph", "121121121", 555555));
@@ -28,13 +28,34 @@ public class Main {
 	}
 	
 	private static void testAccount(BankAccount account) {
-		System.out.println("*** Testing Account ***");
+		System.out.println("****** Testing Account for "+ account.getOwnerName() + " ******");
 		System.out.println("Type: " + account.getClass().getName());
 		System.out.println("Details: " + account);
 		testDeposit(account, 2000);
 		testDeposit(account, 3000);
 		testWithdraw(account, 500);
 		testWithdraw(account, 40000);
+		testManage(account);
+		if (account instanceof CheckingAccount) {
+			testWriteCheck((CheckingAccount)account, 2000);
+		}
+	}
+	
+	private static void testManage(BankAccount account) {
+		System.out.println("---Test Manage--- Current balance: " + account.getBalance());
+		System.out.println("Performing monthly management!");
+		if (account instanceof SavingsAccount) {
+			System.out.println("Adding interest of "+ ((SavingsAccount)account).getInterest() + "%");
+		}
+		if (account instanceof InterestChecking) {
+			System.out.println("Adding interest of "+ ((InterestChecking)account).getInterest() + "%");
+		}
+		try {
+			account.manage();
+		} catch (IllegalBalanceException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println("Balance is now " + account.getBalance());
 	}
 	
 	private static void testDeposit(BankAccount account, double amount) {
@@ -49,6 +70,17 @@ public class Main {
 		System.out.println("Withdrawing amount of " + amount);
 		try {
 			account.withdraw(amount);
+		} catch (IllegalBalanceException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println("Balance is now " + account.getBalance());
+	}
+	
+	private static void testWriteCheck(CheckingAccount account, double amount) {
+		System.out.println("---Test Writing Check--- Current balance: " + account.getBalance());
+		System.out.println("Writing check with amount of " + amount);
+		try {
+			account.writeCheck(amount);
 		} catch (IllegalBalanceException e) {
 			System.out.println(e.getMessage());
 		}

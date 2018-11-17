@@ -47,6 +47,10 @@ public abstract class BankAccount {
 		return m_ownerName;
 	}
 	
+	public void setOwnerName(String name) {
+		m_ownerName = name;
+	}
+	
 	public String getOwnerId() {
 		return m_ownerId;
 	}
@@ -55,10 +59,20 @@ public abstract class BankAccount {
 		return m_balance;
 	}
 	
+	/**
+	 * Add money to the account.
+	 * @param amount
+	 */
 	public void deposit(double amount) {
 		m_balance += amount;
 	}
 	
+	/**
+	 * Withdraw money from the account.
+	 * Amount must be less or equal to the balance.
+	 * @param amount
+	 * @throws IllegalBalanceException
+	 */
 	public void withdraw(double amount) throws IllegalBalanceException {
 		double remainingBalance = m_balance - amount;
 		if (remainingBalance < 0) {
@@ -67,6 +81,10 @@ public abstract class BankAccount {
 		m_balance = remainingBalance;
 	}
 	
+	/**
+	 * Performs periodic management, the management rules and fees depend of the type of account.
+	 * @throws IllegalBalanceException
+	 */
 	public abstract void manage() throws IllegalBalanceException;
 	
 	@Override

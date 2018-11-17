@@ -1,5 +1,11 @@
 package maman12.bank;
 
+/**
+ * Checking account with free management.
+ * Holder is limited with the amount of checks - minimal amount must remain in his balance.
+ * @author ayalwarman
+ *
+ */
 public class NoServiceChargeChecking extends CheckingAccount {
 
 	private double m_minimalBalance;

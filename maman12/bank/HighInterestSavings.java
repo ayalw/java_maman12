@@ -1,5 +1,11 @@
 package maman12.bank;
 
+/**
+ * Bank account without ability to write checks, and with ability to gain interest.
+ * The interest will be high but the account must retain a minimal balance.
+ * @author ayalwarman
+ *
+ */
 public class HighInterestSavings extends SavingsAccount {
 
 	private double m_minimalBalance;

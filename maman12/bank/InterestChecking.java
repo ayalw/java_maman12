@@ -1,9 +1,17 @@
 package maman12.bank;
 
+/**
+ * Checking account with monthly interest gain.
+ * @author ayalwarman
+ *
+ */
 public class InterestChecking extends NoServiceChargeChecking {
 
-	private final static double DEFAULT_INTEREST = 0.02;
+	private final static double DEFAULT_INTEREST = 2;
 	
+	/**
+	 * Interest value is in percentage.
+	 */
 	private double m_interest;
 	
 	public InterestChecking(String accountNumber,
@@ -41,9 +49,12 @@ public class InterestChecking extends NoServiceChargeChecking {
 	}
 	
 	@Override
+	/**
+	 * Interest calculation: balance increases every month by percentage expressed in interest.
+	 */
 	public void manage() throws IllegalBalanceException {
 		super.manage();
-		m_balance *= (1 + m_interest);
+		m_balance = Utils.addPercentage(m_balance, m_interest);
 	}
 	
 	@Override
