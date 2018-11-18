@@ -6,12 +6,23 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+/**
+ * This panel will show a line between points entered by user.
+ * @author ayalwarman
+ *
+ */
 public class GraphWithLengthsPanel extends JPanel {
 
 	private static final long serialVersionUID = 7127130509447629392L;
 
+	/**
+	 * Every point entered by a user is stored here.
+	 */
 	private ArrayList<Point> m_points;
 	
+	/**
+	 * This list stores the edges between each point (entered by the user) to its successive.
+	 */
 	private ArrayList<Edge> m_edges;
 	
 	public GraphWithLengthsPanel() {
